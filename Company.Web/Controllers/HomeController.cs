@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Configuration;
+using System.Net.Mail;
 using System.Web.Mvc;
 
 namespace Company.Web.Controllers
@@ -46,6 +44,27 @@ namespace Company.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Upload(string name, string email, string subject, string message)
+        {
+            ViewBag.Message = "Your contact page.";
+            sendEmail(name, email, subject, message);
+            return View("Contact");
+        }
+
+        private void sendEmail(string name, string email, string subject, string message)
+        {
+            var toAddress = ConfigurationManager.AppSettings["toAddress"];
+            MailMessage mailMessage = new MailMessage();
+            SmtpClient smtp = new SmtpClient();
+            mailMessage.From = new MailAddress(email);
+            mailMessage.To.Add(new MailAddress(toAddress));
+            mailMessage.Subject = subject;
+            mailMessage.IsBodyHtml = true;
+            mailMessage.Body = message;
+            smtp.Send(mailMessage);
         }
     }
 }
