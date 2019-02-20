@@ -398,9 +398,6 @@
     <Content Include="Views\Home\Elements.cshtml" />
     <Content Include="Views\Home\Feedback.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
-    <Content Include="Views\About\History.cshtml" />
-    <Content Include="Views\About\Partners.cshtml" />
-    <Content Include="Views\About\Vacancies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
