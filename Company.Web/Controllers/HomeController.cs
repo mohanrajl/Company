@@ -39,6 +39,13 @@ namespace Company.Web.Controllers
             return View();
         }
 
+        public ActionResult OurHistory()
+        {
+            ViewBag.Message = "Our History.";
+
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

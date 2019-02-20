@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,6 +231,7 @@
     <Content Include="img\l4.png" />
     <Content Include="img\l5.png" />
     <Content Include="img\logo.png" />
+    <Content Include="img\logoo.png" />
     <Content Include="img\o1.jpg" />
     <Content Include="img\o2.jpg" />
     <Content Include="img\o3.jpg" />
@@ -395,6 +397,10 @@
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\Home\Elements.cshtml" />
     <Content Include="Views\Home\Feedback.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\About\History.cshtml" />
+    <Content Include="Views\About\Partners.cshtml" />
+    <Content Include="Views\About\Vacancies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

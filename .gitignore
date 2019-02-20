@@ -4,7 +4,9 @@
 *.dll
 *.props
 bin/
+obj/
 packages/
+Debug/
 *.lock
 *.ide
 *.ide-shm
