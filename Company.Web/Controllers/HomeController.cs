@@ -56,11 +56,11 @@ namespace Company.Web.Controllers
 
         private void sendEmail(string name, string email, string subject, string message)
         {
-            var toAddress = ConfigurationManager.AppSettings["toAddress"];
+            var toEmailAddress = ConfigurationManager.AppSettings["toEmailAddress"];
             MailMessage mailMessage = new MailMessage();
             SmtpClient smtp = new SmtpClient();
             mailMessage.From = new MailAddress(email);
-            mailMessage.To.Add(new MailAddress(toAddress));
+            mailMessage.To.Add(new MailAddress(toEmailAddress));
             mailMessage.Subject = subject;
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = message;

@@ -1,0 +1,12 @@
+
+*.nupkg
+*.p7s
+*.dll
+*.props
+bin/
+packages/
+*.lock
+*.ide
+*.ide-shm
+*.ide-wal
+.vs/config/applicationhost.config
