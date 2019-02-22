@@ -1,4 +1,4 @@
-﻿using Company.Models;
+using Company.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -43,6 +43,7 @@ namespace Company.Provider
                                 Id = Convert.ToInt32(users.Rows[i]["Id"].ToString()),
                                 Name = users.Rows[i]["Name"].ToString().Trim(),
                                 Password = users.Rows[i]["Password"].ToString().Trim(),
+                                Email = users.Rows[i]["Email"].ToString().Trim(),
                                 Admin = (bool)users.Rows[i]["Admin"],
                                 Active = (bool) users.Rows[i]["Active"]
                             };
@@ -64,29 +65,29 @@ namespace Company.Provider
             }
         }
 
-        public int DeleteUser(int userId)
-        {
-            SqlConnection con = null;
-            int result;
-            try
-            {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CompanyDbConnectionString"].ToString());
-                SqlCommand cmd = new SqlCommand("sp_DeleteUser", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id", userId);
-                con.Open();
-                result = cmd.ExecuteNonQuery();
-                return result;
-            }
-            catch
-            {
-                return 0;
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
+        //public int DeleteUser(int userId)
+        //{
+        //    SqlConnection con = null;
+        //    int result;
+        //    try
+        //    {
+        //        con = new SqlConnection(ConfigurationManager.ConnectionStrings["CompanyDbConnectionString"].ToString());
+        //        SqlCommand cmd = new SqlCommand("sp_DeleteUser", con);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Parameters.AddWithValue("@id", userId);
+        //        con.Open();
+        //        result = cmd.ExecuteNonQuery();
+        //        return result;
+        //    }
+        //    catch
+        //    {
+        //        return 0;
+        //    }
+        //    finally
+        //    {
+        //        con.Close();
+        //    }
+        //}
 
         public string InsertUser(User user)
         {
@@ -99,6 +100,7 @@ namespace Company.Provider
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@name", user.Name);
                 cmd.Parameters.AddWithValue("@password", user.Password);
+                cmd.Parameters.AddWithValue("@email", user.Email);
                 cmd.Parameters.AddWithValue("@admin", user.Admin ? 1 : 0);
                 cmd.Parameters.AddWithValue("@active", user.Active ? 1 : 0);
                 con.Open();
@@ -126,6 +128,7 @@ namespace Company.Provider
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id", user.Id);
                 cmd.Parameters.AddWithValue("@password", user.Password);
+                cmd.Parameters.AddWithValue("@email", user.Email);
                 cmd.Parameters.AddWithValue("@admin", user.Admin ? 1 : 0);
                 cmd.Parameters.AddWithValue("@active", user.Active ? 1 : 0);
                 con.Open();
