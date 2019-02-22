@@ -1,6 +1,8 @@
+using Company.Provider;
+using Company.Web.Models;
 using System.Web.Mvc;
 using System.Web.Security;
-using Company.Web.Models;
+using System.Linq;
 
 namespace Company.Web.Controllers
 {
@@ -18,8 +20,9 @@ namespace Company.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(Login login)
-        {
-            if (login.UserName == "test")
+        {            
+            var userList = new UserProvider().GetUsers();
+            if (userList.Any(item => item.Name.Equals(login.UserName.Trim()) && item.Password.Equals(login.Password.Trim()) && item.Active == true))
             {
                 FormsAuthentication.SetAuthCookie(login.UserName, true);
                 return RedirectToAction("Home", "Secure");

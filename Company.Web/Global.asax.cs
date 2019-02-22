@@ -12,6 +12,12 @@ namespace Company.Web
     {
         protected void Application_Start()
         {
+            var razorEngine = ViewEngines.Engines.OfType<RazorViewEngine>().First();
+            razorEngine.ViewLocationFormats = razorEngine.ViewLocationFormats.Concat(new string[]
+            {
+                "~/Views/Secure/{1}/{0}.cshtml"
+            }).ToArray();
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

@@ -60,6 +60,16 @@
                         </li>
                         <li>@Html.ActionLink("Elements", "Elements", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Login", "Login", "Secure")</li>
+                        }
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Logout", "Logout", "Secure")</li>
+                        }
+
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>
