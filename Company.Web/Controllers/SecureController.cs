@@ -21,20 +21,21 @@ namespace Company.Web.Controllers
         [HttpPost]
         public ActionResult Login(Login login)
         {            
-            var userList = new UserProvider().GetUsers();
-            if (userList.Any(item => item.Name.Equals(login.UserName.Trim()) && item.Password.Equals(login.Password.Trim()) && item.Active == true))
+            var user = new UserProvider().GetUsers().Where(item => item.Name.Equals(login.UserName.Trim()) && item.Password.Equals(login.Password.Trim()) && item.Active == true).FirstOrDefault();
+            if (user != null)
             {
-                FormsAuthentication.SetAuthCookie(login.UserName, true);
+                FormsAuthentication.SetAuthCookie(user.Name, true);
+                Session["UserId"] = user.Id;
                 return RedirectToAction("Home", "Secure");
             }
 
             ViewBag.Message = "login";
-
             return View();
         }
 
         public ActionResult Logout()
         {
+            Session["UserId"] = null;
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Secure");
         }
