@@ -14,6 +14,12 @@ namespace Company.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "AboutFolder",
+                url: "About/{action}/{id}",
+                defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "UserFolder",
                 url: "User/{action}/{id}",
                 defaults: new { controller = "User", action = "Index", id = UrlParameter.Optional }

@@ -46,16 +46,16 @@
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Services", "Services", "Home")</li>
-                        <li>@Html.ActionLink("Feedback", "Feedback", "Home")</li>
                         <li class="menu-has-children">
-                            <a href="">Blog</a>
+                            @Html.ActionLink("About", "Index", "About")                            
                             <ul>
-                                <li><a href="blog-home.html">Blog Home</a></li>
-                                <li><a href="blog-single.html">Blog Single</a></li>
+                                <li>@Html.ActionLink("History", "History", "About")</li>
+                                <li>@Html.ActionLink("Partners", "Partners", "About")</li>
+                                <li>@Html.ActionLink("Current Vacancies", "Index", "About")</li>
                             </ul>
                         </li>
+                        <li>@Html.ActionLink("About", "Index", "About")</li>
+                        <li>@Html.ActionLink("Feedback", "Feedback", "Home")</li>                        
                         <li>@Html.ActionLink("Elements", "Elements", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         @if (!User.Identity.IsAuthenticated)
@@ -102,7 +102,7 @@
                             <div class="col">
                                 <ul>
                                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                                    <li>@Html.ActionLink("About", "Index", "About")</li>
                                     <li><a href="#">Feature</a></li>
                                     <li><a href="#">Services</a></li>
                                     <li><a href="#">Portfolio</a></li>
