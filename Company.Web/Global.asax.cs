@@ -15,7 +15,7 @@ namespace Company.Web
             var razorEngine = ViewEngines.Engines.OfType<RazorViewEngine>().First();
             razorEngine.ViewLocationFormats = razorEngine.ViewLocationFormats.Concat(new string[]
             {
-                "~/Views/Secure/{1}/{0}.cshtml"
+                "~/Views/{1}/{0}.cshtml"
             }).ToArray();
 
             AreaRegistration.RegisterAllAreas();

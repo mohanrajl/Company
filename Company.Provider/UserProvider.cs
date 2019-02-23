@@ -43,7 +43,7 @@ namespace Company.Provider
                                 Id = Convert.ToInt32(users.Rows[i]["Id"].ToString()),
                                 Name = users.Rows[i]["Name"].ToString().Trim(),
                                 Password = users.Rows[i]["Password"].ToString().Trim(),
-                                Email = users.Rows[i]["Email"].ToString().Trim(),
+                                Email = users.Rows[i]["Email"] != null ? users.Rows[i]["Email"].ToString().Trim() : string.Empty,
                                 Admin = (bool)users.Rows[i]["Admin"],
                                 Active = (bool) users.Rows[i]["Active"]
                             };
@@ -65,31 +65,7 @@ namespace Company.Provider
             }
         }
 
-        //public int DeleteUser(int userId)
-        //{
-        //    SqlConnection con = null;
-        //    int result;
-        //    try
-        //    {
-        //        con = new SqlConnection(ConfigurationManager.ConnectionStrings["CompanyDbConnectionString"].ToString());
-        //        SqlCommand cmd = new SqlCommand("sp_DeleteUser", con);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.AddWithValue("@id", userId);
-        //        con.Open();
-        //        result = cmd.ExecuteNonQuery();
-        //        return result;
-        //    }
-        //    catch
-        //    {
-        //        return 0;
-        //    }
-        //    finally
-        //    {
-        //        con.Close();
-        //    }
-        //}
-
-        public string InsertUser(User user)
+        public string CreateUser(User user)
         {
             SqlConnection con = null;
             string result = "";
@@ -107,7 +83,7 @@ namespace Company.Provider
                 result = cmd.ExecuteScalar().ToString();
                 return result;
             }
-            catch
+            catch(SqlException ex)
             {
                 return result = "";
             }

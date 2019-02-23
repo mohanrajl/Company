@@ -62,12 +62,12 @@
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         @if (!User.Identity.IsAuthenticated)
                         {
-                            <li>@Html.ActionLink("Login", "Login", "Secure")</li>
+                            <li>@Html.ActionLink("Login", "Login", "Home")</li>
                         }
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li>@Html.ActionLink("Logout", "Logout", "Secure")</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                         }
 
                     </ul>

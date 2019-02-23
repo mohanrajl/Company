@@ -1,6 +1,6 @@
 ﻿namespace Company.Web.Models
 {
-    public class Login
+    public class LoginViewModel
     {
         public string UserName { get; set; }
 
