@@ -41,23 +41,38 @@
         <div class="container main-menu">
             <div class="row align-items-center justify-content-between d-flex">
                 <div id="logo">
-                    <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+                    <a href="index.html"><img src="~/img/logo.png" alt="" title="" /></a>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li class="menu-has-children">
-                            @Html.ActionLink("About", "Index", "About")                            
+                            @Html.ActionLink("About", "Index", "About")
                             <ul>
                                 <li>@Html.ActionLink("History", "History", "About")</li>
                                 <li>@Html.ActionLink("Partners", "Partners", "About")</li>
-                                <li>@Html.ActionLink("Current Vacancies", "Index", "About")</li>
+                                <li>@Html.ActionLink("Vacancies", "Vacancies", "About")</li>
                             </ul>
                         </li>
-                        <li>@Html.ActionLink("About", "Index", "About")</li>
-                        <li>@Html.ActionLink("Feedback", "Feedback", "Home")</li>                        
-                        <li>@Html.ActionLink("Elements", "Elements", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li class="menu-has-children">
+                            @Html.ActionLink("Our Services", "Index", "Services")
+                            <ul>
+                                <li>@Html.ActionLink("Tax Consultancy", "TaxConsultancy", "Services")</li>
+                                <li>@Html.ActionLink("Accounting", "Accounting", "Services")</li>
+                            </ul>
+                        </li>
+                        <li class="menu-has-children">
+                            @Html.ActionLink("News", "Index", "News")
+                            <ul>
+                                <li>@Html.ActionLink("Links", "Links", "News")</li>
+                            </ul>
+                        </li>
+                        <li class="menu-has-children">
+                            @Html.ActionLink("Contact", "Index", "Contact")
+                            <ul>
+                                <li>@Html.ActionLink("Legal Notice", "LegalNotice", "Contact")</li>
+                            </ul>
+                        </li>
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <li>@Html.ActionLink("Login", "Login", "Home")</li>
@@ -103,17 +118,18 @@
                                 <ul>
                                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                                     <li>@Html.ActionLink("About", "Index", "About")</li>
-                                    <li><a href="#">Feature</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Portfolio</a></li>
+                                    <li>@Html.ActionLink("History", "History", "About")</li>
+                                    <li>@Html.ActionLink("Partners", "Partners", "About")</li>
+                                    <li>@Html.ActionLink("Vacancies", "Vacancies", "About")</li>                                    
                                 </ul>
                             </div>
                             <div class="col">
                                 <ul>
-                                    <li><a href="#">Team</a></li>
-                                    <li><a href="#">Pricing</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li>@Html.ActionLink("Our Services", "Index", "Services")</li>
+                                    <li>@Html.ActionLink("Tax Consultancy", "TaxConsultancy", "Services")</li>
+                                    <li>@Html.ActionLink("Accounting", "Accounting", "Services")</li>
+                                    <li>@Html.ActionLink("News", "Index", "News")</li>
+                                    <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
                                 </ul>
                             </div>
                         </div>
@@ -141,8 +157,7 @@
                         <div class="row">
                             <div class="col">
                                 <ul>
-                                    <li>Mon - Fri : 9 AM - 5 PM</li>
-                                    <li>Sat - Sun : Available on Mobile</li>
+                                    <li>Mon to Fri 9am to 6 pm</li>                                    
                                 </ul>
                             </div>
                         </div>
@@ -159,9 +174,7 @@
             </div>
         </div>
     </footer>
-
-
-    @*@Scripts.Render("~/bundles/jquery")*@
+    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

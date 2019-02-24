@@ -127,12 +127,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\SendEmailViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -409,6 +413,14 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\About\History.cshtml" />
     <Content Include="Views\About\Partners.cshtml" />
+    <Content Include="Views\About\Vacancies.cshtml" />
+    <Content Include="Views\Services\Accounting.cshtml" />
+    <Content Include="Views\Services\TaxConsultancy.cshtml" />
+    <Content Include="Views\Services\Index.cshtml" />
+    <Content Include="Views\News\Links.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Contact\LegalNotice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

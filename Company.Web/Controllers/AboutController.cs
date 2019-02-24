@@ -23,28 +23,7 @@ namespace Company.Web.Controllers
             return View();
         }
 
-        public ActionResult Feedback()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Elements()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult OurHistory()
-        {
-            ViewBag.Message = "Our History.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
+        public ActionResult Vacancies()
         {
             ViewBag.Message = "Your contact page.";
 

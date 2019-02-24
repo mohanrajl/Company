@@ -20,6 +20,24 @@ namespace Company.Web
             );
 
             routes.MapRoute(
+                name: "ServicesFolder",
+                url: "Services/{action}/{id}",
+                defaults: new { controller = "Services", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "NewsFolder",
+                url: "News/{action}/{id}",
+                defaults: new { controller = "News", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "ContactFolder",
+                url: "Contact/{action}/{id}",
+                defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "UserFolder",
                 url: "User/{action}/{id}",
                 defaults: new { controller = "User", action = "Index", id = UrlParameter.Optional }
