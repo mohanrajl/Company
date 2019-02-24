@@ -29,19 +29,25 @@
                 <h4 class="text-white">Login Here</h4>
                 @using (Html.BeginForm())
                 { 
-                    <div class="row">
-                        <div class="col-lg-12 d-flex flex-column">
-                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control mt-20", placeholder = "User Name", onfocus = "this.placeholder = ''", onblur = "this.placeholder = 'User Name'" } })
-                            @Html.ValidationMessageFor(model => model.UserName)                            
-                        </div>
-                        <div class="col-lg-12 d-flex flex-column">
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mt-20", placeholder = "Password", onfocus = "this.placeholder = ''", onblur = "this.placeholder = 'Password'" } })
-                            @Html.ValidationMessageFor(model => model.Password)                            
-                        </div>
-                        <div class="col-lg-12 d-flex justify-content-end send-btn">
-                            <button type="submit" value="Login" class="genric-btn primary mt-20 text-uppercase ">Login</button>
-                        </div>
+                <div class="row">
+                    <div class="col-lg-12 d-flex flex-column">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control mt-20", placeholder = "User Name", onfocus = "this.placeholder = ''", onblur = "this.placeholder = 'User Name'" } })
+                        @Html.ValidationMessageFor(model => model.UserName)
                     </div>
+                    <div class="col-lg-12 d-flex flex-column">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mt-20", placeholder = "Password", onfocus = "this.placeholder = ''", onblur = "this.placeholder = 'Password'" } })
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                    <div class="col-lg-12 d-flex flex-column">
+                        @if (@ViewBag.NotValid != null)
+                        {     
+                            <p class="text-white">@ViewBag.NotValid</p>                            
+                        }
+                    </div>
+                    <div class="col-lg-12 d-flex justify-content-end send-btn">
+                        <button type="submit" value="Login" class="genric-btn primary mt-20 text-uppercase ">Login</button>
+                    </div>
+                </div>
                 }
             </div>
         </div>

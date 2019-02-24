@@ -1,7 +1,25 @@
 ﻿
-@{
-    ViewBag.Title = "Home";
-}
+<br />
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 header-text text-center">
+                <h5 class="mb-10">@Html.ActionLink("Users", "Index", "User") || @Html.ActionLink("Users", "Index", "User") || @Html.ActionLink("Users", "Index", "User")</h5>
+            </div>
+        </div>
+    </div>
+</section>
 
-<h2>Home</h2>
-
+<br />
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 header-text text-center">
+                <h1 class="mb-10">Welcome @User.Identity.Name</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Sample Area -->
+<br />
+<br />

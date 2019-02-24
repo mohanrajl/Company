@@ -75,6 +75,11 @@ namespace Company.Web.Controllers
 
         public ActionResult Edit(int id)
         {
+            if (id <= 0)
+            {
+                return RedirectToAction("Index");
+            }
+
             var userList = new UserProvider().GetUsers();
             var user = userList.SingleOrDefault(item => item.Id == id);
             if (user != null)

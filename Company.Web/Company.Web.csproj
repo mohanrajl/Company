@@ -407,7 +407,6 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\List.cshtml" />
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Login.cshtml" />
     <Content Include="Views\About\Index.cshtml" />

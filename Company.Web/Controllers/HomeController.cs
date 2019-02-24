@@ -20,7 +20,10 @@ namespace Company.Web.Controllers
                 return RedirectToAction("Home", "Secure");
             }
 
-            ViewBag.Message = "login";
+            if (TempData.Count > 0 && TempData["NotValid"] != null)
+            {
+                ViewBag.NotValid = TempData["NotValid"].ToString();
+            }
 
             return View("~/Views/Login.cshtml");
         }
@@ -36,7 +39,7 @@ namespace Company.Web.Controllers
                 return RedirectToAction("Home");
             }
 
-            ViewBag.Message = "login";
+            TempData["NotValid"] = "Invalid username or password";            
             return RedirectToAction("Login");
         }
 
