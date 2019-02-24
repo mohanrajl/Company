@@ -36,6 +36,11 @@ namespace Company.Web.Controllers
             {
                 FormsAuthentication.SetAuthCookie(user.Name, true);
                 Session["UserId"] = user.Id;
+                if (user.Admin)
+                {
+                    Session["IsAdmin"] = "Yes";
+                }
+
                 return RedirectToAction("Home");
             }
 
@@ -47,6 +52,7 @@ namespace Company.Web.Controllers
         public ActionResult Logout()
         {
             Session["UserId"] = null;
+            Session["IsAdmin"] = null;
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
