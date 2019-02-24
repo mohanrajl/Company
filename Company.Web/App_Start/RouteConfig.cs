@@ -44,6 +44,18 @@ namespace Company.Web
             );
 
             routes.MapRoute(
+                name: "SaleFolder",
+                url: "Sale/{action}/{id}",
+                defaults: new { controller = "Sale", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "PurchaseFolder",
+                url: "Purchase/{action}/{id}",
+                defaults: new { controller = "Purchase", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

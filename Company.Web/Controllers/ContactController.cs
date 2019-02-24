@@ -24,7 +24,7 @@ namespace Company.Web.Controllers
         {
             ViewBag.Message = "Your contact page.";
             Send(sendEmailViewModel);
-            return View("Contact");
+            return RedirectToAction("Index");
         }
 
         private void Send(SendEmailViewModel sendEmailViewModel)

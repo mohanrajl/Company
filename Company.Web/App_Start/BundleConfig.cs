@@ -19,6 +19,9 @@ namespace Company.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            "~/Scripts/jquery-ui.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/vendor/jquery-2.2.4.min.js",
                         "~/Scripts/vendor/bootstrap.min.js",

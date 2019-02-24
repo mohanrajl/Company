@@ -4,15 +4,12 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Company.Provider
 {
     public class SaleProvider
     {
-        public List<Sale> GetSales()
+        public List<Sale> GetSales(int userId)
         {
             SqlConnection con = null;
             DataSet ds = null;
@@ -24,6 +21,8 @@ namespace Company.Provider
                 {
                     CommandType = CommandType.StoredProcedure
                 };
+
+                cmd.Parameters.AddWithValue("@userId", userId);
                 con.Open();
                 SqlDataAdapter da = new SqlDataAdapter
                 {
@@ -36,20 +35,20 @@ namespace Company.Provider
                 if (ds != null && ds.Tables.Count > 0)
                 {
                     salelist = new List<Sale>();
-                    DataTable users = ds.Tables[0];
-                    if (users.Rows.Count > 0)
+                    DataTable sales = ds.Tables[0];
+                    if (sales.Rows.Count > 0)
                     {
-                        for (int i = 0; i < users.Rows.Count; i++)
+                        for (int i = 0; i < sales.Rows.Count; i++)
                         {
                             Sale sale = new Sale
                             {
-                                Id = Convert.ToInt32(users.Rows[i]["Id"].ToString()),
-                                UserId = Convert.ToInt32(users.Rows[i]["UserId"].ToString()),
-                                Date = Convert.ToDateTime(users.Rows[i]["SaleDate"].ToString()),
-                                Description = users.Rows[i]["Description"].ToString().Trim(),
-                                NetAmount = Convert.ToDecimal(users.Rows[i]["NetAmount"].ToString().Trim()),
-                                VatApplied = Convert.ToBoolean(users.Rows[i]["VatApplied"].ToString().Trim()),
-                                Active = Convert.ToBoolean(users.Rows[i]["Active"].ToString().Trim())
+                                Id = Convert.ToInt32(sales.Rows[i]["Id"].ToString()),
+                                UserId = Convert.ToInt32(sales.Rows[i]["UserId"].ToString()),
+                                Date = Convert.ToDateTime(sales.Rows[i]["SaleDate"].ToString()),
+                                Description = sales.Rows[i]["Description"].ToString().Trim(),
+                                NetAmount = Convert.ToDecimal(sales.Rows[i]["NetAmount"].ToString().Trim()),
+                                VatApplied = Convert.ToBoolean(sales.Rows[i]["VatApplied"].ToString().Trim()),
+                                Active = Convert.ToBoolean(sales.Rows[i]["Active"].ToString().Trim())
                             };
 
                             salelist.Add(sale);
@@ -69,31 +68,7 @@ namespace Company.Provider
             }
         }
 
-        //public int DeleteUser(int saleId)
-        //{
-        //    SqlConnection con = null;
-        //    int result;
-        //    try
-        //    {
-        //        con = new SqlConnection(ConfigurationManager.ConnectionStrings["CompanyDbConnectionString"].ToString());
-        //        SqlCommand cmd = new SqlCommand("sp_DeleteUser", con);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.AddWithValue("@id", userId);
-        //        con.Open();
-        //        result = cmd.ExecuteNonQuery();
-        //        return result;
-        //    }
-        //    catch
-        //    {
-        //        return 0;
-        //    }
-        //    finally
-        //    {
-        //        con.Close();
-        //    }
-        //}
-
-        public string InsertSale(Sale sale)
+        public string CreateSale(Sale sale)
         {
             SqlConnection con = null;
             string result = "";
@@ -103,7 +78,7 @@ namespace Company.Provider
                 SqlCommand cmd = new SqlCommand("sp_InsertSale", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userId", sale.UserId);
-                cmd.Parameters.AddWithValue("@saleDate", sale.Date);
+                cmd.Parameters.AddWithValue("@saleDate", sale.Date.ToString("dd/MM/yyyy"));
                 cmd.Parameters.AddWithValue("@description", sale.Description);
                 cmd.Parameters.AddWithValue("@netAmount", sale.NetAmount);
                 cmd.Parameters.AddWithValue("@vatApplied", sale.VatApplied ? 1 : 0);
@@ -121,33 +96,5 @@ namespace Company.Provider
                 con.Close();
             }
         }
-
-        //public string UpdateUser(User user)
-        //{
-        //    SqlConnection con = null;
-        //    string result = "";
-        //    try
-        //    {
-        //        con = new SqlConnection(ConfigurationManager.ConnectionStrings["CompanyDbConnectionString"].ToString());
-        //        SqlCommand cmd = new SqlCommand("sp_UpdateUser", con);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.AddWithValue("@id", user.Id);
-        //        cmd.Parameters.AddWithValue("@password", user.Password);
-        //        cmd.Parameters.AddWithValue("@email", user.Email);
-        //        cmd.Parameters.AddWithValue("@admin", user.Admin ? 1 : 0);
-        //        cmd.Parameters.AddWithValue("@active", user.Active ? 1 : 0);
-        //        con.Open();
-        //        result = cmd.ExecuteScalar().ToString();
-        //        return result;
-        //    }
-        //    catch
-        //    {
-        //        return result = "";
-        //    }
-        //    finally
-        //    {
-        //        con.Close();
-        //    }
-        //}
     }
 }

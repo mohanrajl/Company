@@ -10,6 +10,11 @@ namespace Company.Web.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["UserId"] == null)
+            {
+                FormsAuthentication.SignOut();
+            }
+
             return View();
         }
         
@@ -47,8 +52,7 @@ namespace Company.Web.Controllers
             TempData["NotValid"] = "Invalid username or password";            
             return RedirectToAction("Login");
         }
-
-        [Authorize]
+        
         public ActionResult Logout()
         {
             Session["UserId"] = null;

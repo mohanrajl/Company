@@ -83,7 +83,7 @@ namespace Company.Provider
                 result = cmd.ExecuteScalar().ToString();
                 return result;
             }
-            catch(SqlException ex)
+            catch
             {
                 return result = "";
             }

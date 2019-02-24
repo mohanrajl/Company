@@ -7,7 +7,7 @@ namespace Company.Web.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Enter Your UserName")]
-        [StringLength(4, ErrorMessage = "UserName should be min four characters and max 20 characters.")]
+        [StringLength(4, ErrorMessage = "User Name should be min four characters and max 20 characters.")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Enter Your Password")]

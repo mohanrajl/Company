@@ -12,6 +12,11 @@ namespace Company.Web.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["IsAdmin"] == null)
+            {
+                return View("~/Views/Home.cshtml");
+            }
+
             var userList = new UserProvider().GetUsers();
 
             if (userList != null && userList.Count > 0)
@@ -38,12 +43,22 @@ namespace Company.Web.Controllers
 
         public ActionResult Create()
         {
+            if (Session["IsAdmin"] == null)
+            {
+                return View("~/Views/Home.cshtml");
+            }
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(UserViewModel userViewModel)
         {
+            if (Session["IsAdmin"] == null)
+            {
+                return View("~/Views/Home.cshtml");
+            }
+
             if (userViewModel != null)
             {
                 var userList = new UserProvider().GetUsers();
@@ -75,6 +90,11 @@ namespace Company.Web.Controllers
 
         public ActionResult Edit(int id)
         {
+            if (Session["IsAdmin"] == null)
+            {
+                return View("~/Views/Home.cshtml");
+            }
+
             if (id <= 0)
             {
                 return RedirectToAction("Index");
@@ -103,6 +123,11 @@ namespace Company.Web.Controllers
         [HttpPost]
         public ActionResult Edit(UserViewModel editUserViewModel)
         {
+            if (Session["IsAdmin"] == null)
+            {
+                return View("~/Views/Home.cshtml");
+            }
+
             if (editUserViewModel != null)
             {
                 var updateUserModel = new User()
