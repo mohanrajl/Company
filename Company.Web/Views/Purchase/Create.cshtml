@@ -1,5 +1,4 @@
-﻿@model Company.Web.Models.PurchaseViewModel
-
+@model Company.Web.Models.PurchaseViewModel
 <br />
 <section>
     <div class="container">
@@ -11,7 +10,6 @@
                         @Html.ActionLink("Users", "Index", "User");
                         <span>||</span>
                     }
-
                     @Html.ActionLink("Sales", "Index", "Sale") ||
                     @Html.ActionLink("Purchases", "Index", "Purchase")
                 </h5>
@@ -19,7 +17,6 @@
         </div>
     </div>
 </section>
-
 <br />
 <section>
     <div class="container">
@@ -36,7 +33,6 @@
 <!-- End Sample Area -->
 <br />
 <br />
-
 <section>
     <div class="container">
         <div class="row justify-content-center">
@@ -45,7 +41,7 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">                        
+                    <div class="form-horizontal">
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
@@ -53,7 +49,6 @@
                                 @Html.HiddenFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -61,7 +56,6 @@
                                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -69,7 +63,6 @@
                                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.NetAmount, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -77,7 +70,6 @@
                                 @Html.ValidationMessageFor(model => model.NetAmount, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.VatApplied, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -87,7 +79,19 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.VatAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.VatAmount, new { htmlAttributes = new { @class = "form-control", @disabled="disabled" } })
+                            </div>
+                        </div>
+                    
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GrossAmout, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.GrossAmout, new { htmlAttributes = new { @class = "form-control", @disabled="disabled" } })
+                            </div>
+                        </div>
                         <div class="form-group text-center">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Create" class="btn btn-default" />
@@ -102,8 +106,31 @@
 <!-- End Sample Area -->
 <br />
 <br />
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryui")
+
+    <script type="text/javascript">$(function() {
+            $('#NetAmount').blur(function () {
+                CalculateVatAmount();
+            });
+
+            $('#VatApplied').change(function () {
+                CalculateVatAmount();
+            });
+
+            function CalculateVatAmount() {
+                var isChecked = $('#VatApplied').prop("checked");
+                var netAmount = Number($('#NetAmount').val());
+                if (!isChecked) {
+                    $('#GrossAmout').val(netAmount);
+                    $('#VatAmount').val("");
+                }
+                else if (netAmount > 0) {
+                    var vatAmount = (netAmount / 100) * 20;
+                    $('#VatAmount').val(vatAmount.toFixed(2));
+                    $('#GrossAmout').val((netAmount + vatAmount).toFixed(2));
+                }
+            }
+        });</script>
 }
