@@ -1,4 +1,4 @@
-﻿@model Company.Web.Models.SaleViewModel
+@model Company.Web.Models.SaleViewModel
 
 <br />
 <section>
@@ -45,55 +45,64 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">                        
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.HiddenFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
-                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.NetAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.NetAmount, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.NetAmount, "", new { @class = "text-danger" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NetAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NetAmount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NetAmount, "", new { @class = "text-danger" })
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.VatApplied, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.VatApplied)
-                                    @Html.ValidationMessageFor(model => model.VatApplied, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group text-center">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.VatApplied, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.VatApplied)
+                                @Html.ValidationMessageFor(model => model.VatApplied, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.VatAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.VatAmount, new { htmlAttributes = new { @class = "form-control", @disabled="disabled" } })
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GrossAmout, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.GrossAmout, new { htmlAttributes = new { @class = "form-control", @disabled="disabled" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
                 }
             </div>
         </div>
@@ -106,4 +115,30 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryui")
+
+    <script type="text/javascript">
+        $(function() {
+            $('#NetAmount').blur(function () {
+                CalculateVatAmount();
+            });
+
+            $('#VatApplied').change(function () {
+                CalculateVatAmount();
+            });
+
+            function CalculateVatAmount() {
+                var isChecked = $('#VatApplied').prop("checked");
+                var netAmount = Number($('#NetAmount').val());
+                if (!isChecked) {
+                    $('#GrossAmout').val(netAmount);
+                    $('#VatAmount').val("");
+                }
+                else if (netAmount > 0) {
+                    var vatAmount = (netAmount / 100) * 20;
+                    $('#VatAmount').val(vatAmount.toFixed(2));
+                    $('#GrossAmout').val((netAmount + vatAmount).toFixed(2));
+                }
+            }
+        });
+    </script>
 }
