@@ -38,10 +38,9 @@ namespace Company.Web
                         "~/Scripts/main.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                    "~/Content/bootstrap.css",
+                    "~/Content/bootstrap/bootstrap.css",
                     "~/Content/linearicons.css",
-                      "~/Content/font-awesome.min.css",
-                      "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.min.css",                      
                       "~/Content/magnific-popup.css",
                       "~/Content/nice-select.css",
                       "~/Content/animate.min.css",

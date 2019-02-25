@@ -55,9 +55,9 @@ namespace Company.Provider
 
                 return userlist;
             }
-            catch
+            catch(Exception ex)
             {
-                return userlist;
+                throw new Exception(ex.Message);                
             }
             finally
             {
