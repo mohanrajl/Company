@@ -54,6 +54,12 @@ namespace Company.Web
                 url: "Purchase/{action}/{id}",
                 defaults: new { controller = "Purchase", action = "Index", id = UrlParameter.Optional }
             );
+            
+            routes.MapRoute(
+                name: "ErrorFolder",
+                url: "Error/{action}/{id}",
+                defaults: new { controller = "Error", action = "Index", id = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",
